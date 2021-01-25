@@ -26,14 +26,14 @@ resources:
     type: git
     icon: github
     source:
-      uri: https://github.com/Firebladee/docker_libvirt.git
+      uri: https://github.com/Firebladee/docker_fly.git
       branch: master
 
   - name: resource-git-dev
     type: git
     icon: github
     source:
-      uri: https://github.com/Firebladee/docker_libvirt.git
+      uri: https://github.com/Firebladee/docker_fly.git
       branch: ((branch))
 
   - name: docker-temp
@@ -50,7 +50,7 @@ resources:
     type: docker-image
     icon: docker
     source:
-      repository: ((nexus_ip)):((nexus_docker_port))/fireblade/libvirt
+      repository: ((nexus_ip)):((nexus_docker_port))/fireblade/fly
       username: ((nexus_username))
       password: ((nexus_password))
       insecure_registries:
@@ -184,8 +184,6 @@ jobs:
       - put: docker-temp
         params:
           build: resource-git/
-          build_args:
-            from: ((nexus_ip)):((nexus_docker_group_port))/centos:7
 
   - name: testinfra
     public: true
