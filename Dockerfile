@@ -1,3 +1,4 @@
+# hadolint ignore=DL3006
 FROM arbourd/concourse-fly
 
 COPY fly_script.sh /usr/bin/fly_script
