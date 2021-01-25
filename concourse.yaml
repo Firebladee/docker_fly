@@ -64,17 +64,19 @@ resources:
       username: ((docker_hub_username))
       password: ((docker_hub_password))
 
-  - name: docker-libvirt
+  - name: docker-fly
     type: docker-image
     icon: docker
     source:
-      repository: ((nexus_ip)):((nexus_docker_group_port))/fireblade/libvirt
+      repository: ((nexus_ip)):((nexus_docker_group_port))/fireblade/fly
+      insecure_registries:
+        - http://((nexus_ip)):((nexus_docker_group_port))
 
   - name: version
     type: semver
     source:
       driver: git
-      uri: git@github.com:Firebladee/docker_libvirt.git
+      uri: git@github.com:Firebladee/docker_fly.git
       branch: version
       file: version
       initial_version: 0.0.1
@@ -236,7 +238,7 @@ jobs:
     plan:
       - get: resource-git-dev
         trigger: true
-      - get: docker-libvirt
+      - get: docker-fly
         trigger: true
       - task: validate
         config:
@@ -260,7 +262,7 @@ jobs:
     plan:
       - get: resource-git-dev
         trigger: true
-      - get: docker-libvirt
+      - get: docker-fly
         trigger: true
       - task: rubocop
         config:
