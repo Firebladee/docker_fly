@@ -20,10 +20,10 @@ fly -t local sync > /dev/null
 
 if [[ $1 == "set-pipeline" ]]
 then
-  fly -t local set-pipeline -n -p $2 -c $3 -l $4 -l $5
+  fly -t local set-pipeline -n -p "$2" -c "$3" -l "$4" -l "$5"
 elif [[ $1 == "unpause-pipeline" ]]
 then
-  fly -t local unpause-pipeline -p $2
+  fly -t local unpause-pipeline -p "$2"
 else
   echo "Action not reconizied"
 fi

@@ -17,6 +17,7 @@ groups:
     jobs:
       - hadolint-dev
       - rubocop-dev
+      - shellcheck-dev
       - rspec-dev
       - build-test-dev
       - testinfra-dev
@@ -309,6 +310,28 @@ jobs:
                 #cd resource-git-dev
                 # rake
 
+  - name: shellcheck-dev
+    public: true
+    plan:
+      - get: resource-git-dev
+        trigger: true
+      - task: shellcheck
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: ((nexus_ip)):((nexus_docker_group_port))/koalaman/shellcheck-alpine
+          inputs:
+            - name: resource-git-dev
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                shellcheck resource-git-dev/*.sh
+
+
   - name: build-test-dev
     public: true
     plan:
@@ -327,6 +350,7 @@ jobs:
         passed:
           - build-test-dev
           - rspec-dev
+          - shellcheck-dev
         trigger: true
       - task: hello
         config:
