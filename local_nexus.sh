@@ -1,6 +1,6 @@
 #!/bin/bash
 
-name=libvirt
+name=fly
 
 # shellcheck disable=SC2046,SC1083
 nexus_ip=$(kubectl get pod $(kubectl get pod -l "app=sonatype-nexus" -o jsonpath="{.items[0].metadata.name}") --template={{.status.podIP}})
