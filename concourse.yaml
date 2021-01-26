@@ -151,9 +151,9 @@ jobs:
             args:
               - -exc
               - |
-                source /docker-lib.sh
-                start_docker
-                cd resource-git
+                # source /docker-lib.sh
+                # start_docker
+                # cd resource-git
                 # rake
         
   - name: shellcheck
