@@ -117,7 +117,7 @@ jobs:
           image_resource:
             type: registry-image
             source:
-              repository: ((nexus_ip)):((nexus_docker_group_port))/ruby
+              repository: ((nexus_ip)):((nexus_docker_group_port))/library/ruby
           inputs:
             - name: resource-git
           run:
